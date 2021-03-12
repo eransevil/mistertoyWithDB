@@ -11,7 +11,7 @@ module.exports = {
     remove,
     update,
     add
-}
+} 
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)

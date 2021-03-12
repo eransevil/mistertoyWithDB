@@ -2,8 +2,7 @@
   <section class="toy-app-container">
     <toy-filter />
 
-    <el-button type="primary" plain
-      ><a href="#addtoy" class="slide-btn"> Add</a></el-button
+    <el-button @click="toAdd" type="primary" plain > Add </el-button
     >
 
     <toy-list
@@ -29,25 +28,16 @@
       </el-pagination>
     </div>
 
-    <h2>Add Toy</h2>
-    <form id="add-toy" @submit.prevent="addToy" class="add-toy-form">
-      <el-input placeholder="Name" v-model="toyToEdit.name"></el-input>
-      <el-input placeholder="Price" v-model="toyToEdit.price"></el-input>
-      <el-input placeholder="Type" v-model="toyToEdit.type"></el-input>
-      <el-button @click="addToy"  icon="el-icon-check" circle></el-button>
-    </form>
   </section>
 </template>
 
 <script>
 import toyList from "../components/toyList.vue";
 import toyFilter from "../components/toyFilter.vue";
-import { toyService } from "../services/toy.service.js";
 export default {
   name: "toyApp",
   data() {
     return {
-      toyToEdit: toyService.getEmptyToy(),
       loading: true,
     };
   },
@@ -72,19 +62,9 @@ export default {
           // showMsg('Cannot remove toy', 'danger')
         });
     },
-    addToy() {
-      const toy = JSON.parse(JSON.stringify(this.toyToEdit));
-      console.log(toy)
-      this.$store
-        .dispatch({ type: "addToy", toy })
-        .then(() => {
-          // showMsg('toy added')
-        })
-        .catch((err) => {
-          // showMsg('Cannot add toy', 'danger')
-        });
-      this.toyToEdit = toyService.getEmptyToy();
-    },
+    toAdd(){
+      this.$router.push('/addtoy')
+    }
   },
   created() {},
 

@@ -10,7 +10,7 @@ async function getUser(req, res) {
         res.status(500).send({ err: 'Failed to get user' })
     }
 }
-
+ 
 async function getUsers(req, res) {
     try {
         const filterBy = {
@@ -38,6 +38,7 @@ async function deleteUser(req, res) {
 async function updateUser(req, res) {
     try {
         const user = req.body
+        console.log(user)
         const savedUser = await userService.update(user)
         res.send(savedUser)
     } catch (err) {

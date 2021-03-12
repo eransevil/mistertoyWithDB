@@ -86,7 +86,7 @@ function _buildCriteria(filterBy) {
     const criteria = {}
     if (filterBy.name) {
         const txtCriteria = { $regex: filterBy.name, $options: 'i' }
-        criteria.name =txtCriteria
+        criteria.name =txtCriteria 
     }
     if (filterBy.type !== 'all') {
         criteria.type = filterBy.type

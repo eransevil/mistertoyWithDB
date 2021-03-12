@@ -11,16 +11,22 @@
       <el-menu-item index="1">
         <router-link to="/">Home</router-link></el-menu-item
       >
-      <el-menu-item index="4">
+      <el-menu-item index="4" v-if="isUserLogged">
         <router-link to="/toy">Toys</router-link>
       </el-menu-item>
-      <el-submenu index="2">
+      <el-submenu index="2" v-if="isUserLogged">
         <template slot="title">Dashboard</template>
         <el-menu-item index="2-1" @click="movePage('/dashboard')"
           >Doughnut Chart
         </el-menu-item>
         <el-menu-item disabled index="2-2">In progress</el-menu-item>
       </el-submenu>
+    <div class="logout-container" v-if ="isUserLogged"> 
+           <span class="greet-msg"> Hello {{fullname}} </span>
+               <el-button class="logout-btn" size="mini" @click="logout" type="primary" plain >Log Out</el-button
+    >
+            <!-- <button class="log-btn" @click="logout">Logout</button> -->
+        </div> 
     </el-menu>
   </section>
 </template>
@@ -37,7 +43,30 @@ export default {
     movePage(path) {
       this.$router.push(path);
     },
+    async logout(){
+        try{
+            const user = this.$store.getters.loggedinUser
+            await this.$store.dispatch({type:"logout", user })
+            if(this.$route.path!=='/') this.$router.push('/')
+            
+
+          }
+        catch(err){
+              console.log(err)
+          }
+    }
   },
+
+  computed:{
+      isUserLogged(){
+        return this.$store.getters.isUserLogged;
+      },
+      fullname(){
+        const user =  this.$store.getters.loggedinUser
+        return user.fullname
+      }
+    }
+  
 };
 </script>
 

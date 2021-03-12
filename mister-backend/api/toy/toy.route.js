@@ -3,7 +3,7 @@ const {log} = require('../../middlewares/logger.middleware')
 const {requireAuth, requireAdmin} =  require('../../middlewares/requireAuth.middleware')
 const router = express.Router()
 const { getToys, getToyById, addToy,updateToy,removeToy} = require('./toy.controlller')
-
+ 
 router.get('/', log,  getToys)
 router.get('/:toyId', log, getToyById)
 router.post('/', log, requireAuth, requireAdmin, addToy)

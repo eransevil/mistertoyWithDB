@@ -9,7 +9,7 @@ export const toyStore = {
       type: 'all',
     },
     pageIdx: 1,
-  },
+  }, 
   getters: {
     toysForDisplay(state) {
       console.log(state.toys);
