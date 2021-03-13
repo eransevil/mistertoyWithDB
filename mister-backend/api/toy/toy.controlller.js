@@ -34,6 +34,8 @@ async function getToyById(req, res) {
 
 async function addToy(req, res) {
     try{
+        const {name, price, type, inStock , createdAt} = req.body;
+        const toy = {name, price, type, inStock , createdAt}
         const savedToy = await toyService.add(toy) 
         res.json(savedToy)
     }

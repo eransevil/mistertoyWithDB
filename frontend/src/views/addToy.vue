@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="home">
         <el-button size="small" class="back-btn" type="info" @click="back" icon="el-icon-arrow-left">Back</el-button>
       <h2>Add Toy</h2>
     <form id="addtoy" @submit.prevent="addToy" class="add-toy-form">
