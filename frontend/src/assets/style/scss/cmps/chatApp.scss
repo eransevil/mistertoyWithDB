@@ -1,0 +1,70 @@
+.chat{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border: 2px solid gray;
+    border-radius:10px ;
+    width: 350px;
+    height: 500px;
+    overflow: scroll;
+    background-color: rgb(214, 210, 210);
+
+   
+    tr:nth-child(even){
+        background-color:grey;
+        color: whitesmoke;
+    }
+    tr:nth-child(odd){
+        background-color: whitesmoke;
+        color: grey;
+        text-align: end;
+    }
+    td{
+        height: 20px;
+        font-size: rem(20px);
+        padding: 10px;
+    }
+    .user-chat{
+        
+        >*{
+            height: 45px;
+            border-radius: 5px;
+            border:none;
+        }
+        button{
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 20px;
+            width: 100px;
+        }
+        input{
+            position: fixed;
+            bottom: 23px;
+            width: 200px;
+            margin-right: 10px;
+            right: 130px;
+        }
+        
+    }
+    
+}
+.open-chat-btn{
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 180px;
+  }
