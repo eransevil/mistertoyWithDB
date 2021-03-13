@@ -1,4 +1,5 @@
 import { toyService } from '../services/toy.service.js';
+import {reviewService} from '../services/review.service.js'
 
 export const toyStore = {
   state: {
@@ -16,7 +17,7 @@ export const toyStore = {
       if (state.pageIdx === 1) return state.toys.slice(0, state.pageIdx * 5);
       return state.toys.slice((state.pageIdx - 1) * 5, state.pageIdx * 5);
     },
-    sumType(state) { //ok
+    sumType(state) { 
       return  state.toys.reduce((acc, toy) => {
         if (!acc[toy.type]) acc[toy.type] = 0;
          acc[toy.type]++;
@@ -36,7 +37,7 @@ export const toyStore = {
       return test;
     },
   },
-
+ 
   mutations: {
     setPage(state, { pageIdx }) {
       state.pageIdx = pageIdx;
@@ -105,5 +106,20 @@ export const toyStore = {
           throw new Error('Cannot save toy');
         });
     },
+
+     async addReview ({commit} , {toy , review}){
+       try {
+         const reviewToAdd = await reviewService.addReview(review)
+         if(toy.reviews) toy.reviews.push (reviewToAdd.txt)
+         else toy['reviews'] = [reviewToAdd.txt]
+          const updatedToy = await toyService.save(toy)
+          commit({type: 'updateToy' ,toy :updatedToy});
+          return updatedToy;
+       }
+       catch(err){
+         console.log('Store: Cannot add toy', err);
+       }
+
+    }
   },
 };

@@ -10,7 +10,7 @@ async function getReviews(req, res) {
         logger.error('Cannot get reviews', err)
         res.status(500).send({ err: 'Failed to get reviews' })
     }
-}
+} 
 
 async function deleteReview(req, res) {
     try {
@@ -21,15 +21,17 @@ async function deleteReview(req, res) {
         res.status(500).send({ err: 'Failed to delete review' })
     }
 }
-
+ 
 
 async function addReview(req, res) {
     try {
-        var review = req.body
+        var review = {}
+        var rev = Object.keys(req.body)
+        review.txt  = rev[0]
         review.byUserId = req.session.user._id
         review = await reviewService.add(review)
         review.byUser = req.session.user
-        review.aboutUser = await userService.getById(review.aboutUserId)
+        review.aboutUser = await userService.getById(review.byUserId)
         res.send(review)
 
     } catch (err) {

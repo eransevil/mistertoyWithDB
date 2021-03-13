@@ -14,6 +14,7 @@ export const httpService = {
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data) {
+        console.log(data)
         return ajax(endpoint, 'POST', data)
     },
     put(endpoint, data) {
@@ -27,12 +28,12 @@ export const httpService = {
 
 }
 
-async function ajax(endpoint, method = 'get', data = null) {
+async function ajax(endpoint, method = 'get', data = null ) {
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
             method,
-            data
+            data,
         })
         return res.data
     } catch (err) {
@@ -44,3 +45,26 @@ async function ajax(endpoint, method = 'get', data = null) {
         throw err
     }
 }
+
+// const url = `${BASE_URL}${endpoint}`;
+
+// const res = await axios({
+//     url,
+//     method,
+//     data,
+//     params,
+// });
+// return res.data;
+
+
+
+
+// async function ajax(endpoint, method = 'get', data = null, extraParams) {
+//     try {
+//         let request = {
+//             url: `${BASE_URL}${endpoint}`,
+//             method,
+//             data,
+//         }
+//         if(extraParams)
+//         request.params = data;

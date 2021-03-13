@@ -1,5 +1,6 @@
 <template>
   <section>
+        <el-button size="small" class="back-btn" type="info" @click="back" icon="el-icon-arrow-left">Back</el-button>
       <h2>Add Toy</h2>
     <form id="addtoy" @submit.prevent="addToy" class="add-toy-form">
       <el-input placeholder="Name" v-model="toyToEdit.name"></el-input>
@@ -35,8 +36,11 @@ export default {
         });
       this.toyToEdit = toyService.getEmptyToy();
     },
+    back(){
+          this.$router.push(`/toy/`);
     }
- 
+    },
+
 }
 </script>
 

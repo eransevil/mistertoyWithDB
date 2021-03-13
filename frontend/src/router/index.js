@@ -22,6 +22,10 @@ const routes = [{
     path: '/addtoy',
     component: addToy
   },
+  // {
+  //   path: '/toy/edit/:toyId/review',
+  //   component: addReview
+  // },
   {
     path: '/toy/edit/:toyId',
     component: toyToEdit

@@ -6,7 +6,6 @@ const toyService = require('./toy.service.js')
 async function getToys(req, res) {
     try {
         const toys = await toyService.query(req.query)
-        // console.log(toys,'get toys')
         res.json(toys)
     } catch (err) {
         logger.error('Cannot get toys', err)
@@ -35,8 +34,6 @@ async function getToyById(req, res) {
 
 async function addToy(req, res) {
     try{
-        const {name, price, type, inStock} = req.body
-        const toy = {name , price, type, inStock}
         const savedToy = await toyService.add(toy) 
         res.json(savedToy)
     }
@@ -50,8 +47,8 @@ async function addToy(req, res) {
 
 async function updateToy (req, res) {
     try{
-        const {name, price, type,inStock,_id} = req.body
-        const toy = { name, price, type,inStock, _id}
+        const {name, price, type,inStock,_id , reviews } = req.body
+        const toy = { name, price, type,inStock, _id , reviews}
         const savedToy = await toyService.update(toy)
         res.json(savedToy)
     }
@@ -81,7 +78,7 @@ function _createToy(name) {
         type: "regular",
         createdAt: Date.now(),
         inStock: true
-    };
+    }; 
 }
 
 module.exports = {

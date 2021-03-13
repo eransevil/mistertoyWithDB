@@ -7,7 +7,7 @@ const { getToys, getToyById, addToy,updateToy,removeToy} = require('./toy.contro
 router.get('/', log,  getToys)
 router.get('/:toyId', log, getToyById)
 router.post('/', log, requireAuth, requireAdmin, addToy)
-router.put('/:toyId', log, requireAuth, requireAdmin, updateToy)
+router.put('/:toyId', log, requireAuth, updateToy)
 router.delete('/:toyId', log, requireAuth, requireAdmin, removeToy)
 
 

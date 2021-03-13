@@ -4,13 +4,12 @@ const ObjectId = require('mongodb').ObjectId
 
 
 
-async function query(filterBy) {
+async function query(filterBy ) {
     const criteria = _buildCriteria(filterBy);
-    console.log(criteria, 'criteria')
+    // console.log(criteria)
     try{
         const collection = await dbService.getCollection('toys') //bring the collection
         var toys = await collection.find(criteria).toArray()
-        // console.log(toys, 'service')
         return toys;
 
         // const regex = new RegExp(filterBy.name, 'i')
@@ -34,7 +33,7 @@ async function getById (id){
         logger.error('cannot find toy by id', err)
         throw err
     }
-}
+} 
 
 async function remove (id){
     try{
@@ -70,7 +69,8 @@ async function update (toy){
             name: toy.name,
             price: toy.price,
             type: toy.type,
-            inStock:toy.inStock
+            inStock:toy.inStock,
+            reviews:toy.reviews
         }
             await collection.updateOne({"_id":ObjectId(toy._id)}, {$set:toyToAdd})
             return toy

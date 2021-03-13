@@ -19,6 +19,7 @@ const session = expressSession({
 })
 // Express App Config
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(session)
 
 if (process.env.NODE_ENV === 'production') {

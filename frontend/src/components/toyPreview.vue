@@ -72,6 +72,7 @@ export default {
     editToy(toyId) {
       this.$router.push(`/toy/edit/${toyId}`);
     },
+  
   },
 };
 </script>

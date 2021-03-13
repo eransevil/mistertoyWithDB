@@ -12,7 +12,7 @@ async function query(filterBy = {}) {
                 $match: filterBy
             },
             {
-                $lookup:
+                $lookup: 
                 {
                     from: 'user',
                     localField: 'byUserId',
