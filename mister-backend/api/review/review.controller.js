@@ -4,13 +4,15 @@ const reviewService = require('./review.service')
  
 async function getReviews(req, res) {
     try {
+        console.log( 'req.params')
+        console.log( req.query)
         const reviews = await reviewService.query(req.query)
         res.send(reviews)
     } catch (err) {
         logger.error('Cannot get reviews', err)
         res.status(500).send({ err: 'Failed to get reviews' })
     }
-} 
+}  
 
 async function deleteReview(req, res) {
     try {
@@ -22,12 +24,14 @@ async function deleteReview(req, res) {
     }
 }
  
-
+ 
 async function addReview(req, res) {
     try {
-        var review = {}
-        var rev = Object.keys(req.body)
-        review.txt  = rev[0]
+        var review = req.body
+        // var rev = Object.keys(req.body)
+        // console.log(review, '30')
+        // throw new err
+        // review.txt  = rev[0]
         review.byUserId = req.session.user._id
         review = await reviewService.add(review)
         review.byUser = req.session.user

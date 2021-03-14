@@ -4,43 +4,46 @@ const asyncLocalStorage = require('../../services/als.service')
 
 async function query(filterBy = {}) {
     try { 
-        // const criteria = _buildCriteria(filterBy)
+        if(filterBy.toyId){
+            filterBy.toyId = ObjectId(filterBy.toyId)
+        }
         const collection = await dbService.getCollection('review') //bring to DB
-        // const reviews = await collection.find(criteria).toArray()
         var reviews = await collection.aggregate([
             {
                 $match: filterBy
             },
             {
-                $lookup: 
+                $lookup:  
                 {
                     from: 'user',
                     localField: 'byUserId',
                     foreignField: '_id',
-                    as: 'byUser'
+                    as: 'user'
                 }
             },
             {
-                $unwind: '$byUser'
+                $unwind: '$user'
             },
             {
                 $lookup:
                 {
-                    from: 'user',
-                    localField: 'aboutUserId',
+                    from: 'toys',
+                    localField: 'toyId',
                     foreignField: '_id',
-                    as: 'aboutUser'
+                    as: 'toy'
                 }
             },
             {
-                $unwind: '$aboutUser'
+                $unwind: '$toy'
             }
         ]).toArray()
+        // console.log(reviews)
         reviews = reviews.map(review => {
-            review.byUser = { _id: review.byUser._id, fullname: review.byUser.fullname }
-            review.aboutUser = { _id: review.aboutUser._id, fullname: review.aboutUser.fullname }
-            delete review.byUserId
-            delete review.aboutUserId
+            // const {username, _id} = review.user
+            // const {_id, name, price} = review.toy
+            ObjectId(filterBy.toyId)
+            review.user = { _id: review.user._id, username: review.user.username }
+            review.toy = { _id:ObjectId(review.toy._id), name: review.toy.name , price: review.toy.price}
             return review
         })
 
@@ -66,7 +69,7 @@ async function remove(reviewId) {
         logger.error(`cannot remove review ${reviewId}`, err)
         throw err
     }
-}
+} 
 
 
 async function add(review) {
@@ -74,10 +77,11 @@ async function add(review) {
         // peek only updatable fields!
         const reviewToAdd = {
             byUserId: ObjectId(review.byUserId),
-            aboutUserId: ObjectId(review.aboutUserId),
-            txt: review.txt
+            toyId: ObjectId(review.toyId),
+            content: review.content
         }
         const collection = await dbService.getCollection('review')
+        // console.log(reviewToAdd)
         await collection.insertOne(reviewToAdd)
         return reviewToAdd;
     } catch (err) {

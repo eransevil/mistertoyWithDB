@@ -49,8 +49,8 @@ async function addToy(req, res) {
 
 async function updateToy (req, res) {
     try{
-        const {name, price, type,inStock,_id , reviews } = req.body
-        const toy = { name, price, type,inStock, _id , reviews}
+        const {name, price, type,inStock,_id , reviews, url } = req.body
+        const toy = { name, price, type,inStock, _id , reviews, url}
         const savedToy = await toyService.update(toy)
         res.json(savedToy)
     }

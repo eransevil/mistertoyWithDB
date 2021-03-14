@@ -8,13 +8,12 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 var axios = Axios.create({
     withCredentials: true
 })
-
+ 
 export const httpService = {
     get(endpoint, data) {
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data) {
-        console.log(data)
         return ajax(endpoint, 'POST', data)
     },
     put(endpoint, data) {

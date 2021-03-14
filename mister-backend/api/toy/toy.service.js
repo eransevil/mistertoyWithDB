@@ -70,7 +70,8 @@ async function update (toy){
             price: toy.price,
             type: toy.type,
             inStock:toy.inStock,
-            reviews:toy.reviews
+            reviews:toy.reviews,
+            url:toy.url
         }
             await collection.updateOne({"_id":ObjectId(toy._id)}, {$set:toyToAdd})
             return toy

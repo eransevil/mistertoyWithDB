@@ -36,6 +36,7 @@ export const toyStore = {
       console.log(test, ' 3555')
       return test;
     },
+
   },
  
   mutations: {
@@ -107,19 +108,6 @@ export const toyStore = {
         });
     },
 
-     async addReview ({commit} , {toy , review}){
-       try {
-         const reviewToAdd = await reviewService.addReview(review)
-         if(toy.reviews) toy.reviews.push (reviewToAdd.txt)
-         else toy['reviews'] = [reviewToAdd.txt]
-          const updatedToy = await toyService.save(toy)
-          commit({type: 'updateToy' ,toy :updatedToy});
-          return updatedToy;
-       }
-       catch(err){
-         console.log('Store: Cannot add toy', err);
-       }
 
-    }
   },
 };

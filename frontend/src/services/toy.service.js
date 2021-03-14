@@ -12,7 +12,7 @@ const KEY = 'TOY_DB';
 export const toyService = {
   query,
   getById,
-  remove,
+  remove, 
   save,
   getEmptyToy: getEmptyToy,
 };
