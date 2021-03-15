@@ -13,7 +13,6 @@ export const toyStore = {
   }, 
   getters: {
     toysForDisplay(state) {
-      console.log(state.toys);
       if (state.pageIdx === 1) return state.toys.slice(0, state.pageIdx * 5);
       return state.toys.slice((state.pageIdx - 1) * 5, state.pageIdx * 5);
     },
@@ -27,15 +26,15 @@ export const toyStore = {
     },
 
     typeMap(state) {
-      const test = state.toys.reduce((acc, toy) => {
+      return state.toys.reduce((acc, toy) => {
         if (!acc[toy.type]) acc[toy.type] =parseInt(toy.price)
          acc[toy.type] += parseInt(toy.price);
-         console.log(acc)
         return acc;
       }, {});
-      console.log(test, ' 3555')
-      return test;
     },
+    // massages(state){
+    //   return state.toy
+    // }
 
   },
  

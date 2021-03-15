@@ -1,9 +1,11 @@
 <template>
   <form @submit.prevent="saveToy" v-if="toy" class="toy-edit-container">
-    <input type v-model="toy.name" />
-    <input type v-model="toy.price" />
-    <input type v-model="toy.type" />
-    <input type v-model="toy.inStock" />
+    <h2> Edit Section</h2>
+    <input type="text" v-model="toy.name"/>
+    <input type="text" v-model="toy.price"/>
+    <input type="text" v-model="toy.type"/>
+    <input type="text" v-model="toy.inStock"/>
+    <input type="text" v-model="test"/>
     <button>SAVE</button>
   </form>
 </template>
@@ -14,8 +16,14 @@ export default {
   name: "toyEdit",
   data() {
     return {
-      toy: null,
-    };
+      toy: {
+        name:'',
+        price:0,
+        type:'',
+        inStock:true
+      },
+      test: "fdsf",
+    }
   },
   methods: {
     saveToy() {
@@ -28,9 +36,9 @@ export default {
   created() {
     // to bring from store??
     const id = this.$route.params.toyId;
-    toyService
-      .getById(id)
-      .then((toy) => (this.toy = JSON.parse(JSON.stringify(toy))));
+    toyService.getById(id).then((toy) => {
+      this.toy = JSON.parse(JSON.stringify(toy));
+    });
   },
 };
 </script>

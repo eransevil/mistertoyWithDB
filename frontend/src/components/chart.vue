@@ -16,9 +16,7 @@ export default {
     getAvg() {
       const toyTypeArr =  Object.values(this.toyTypeMap);
       const sumTypeArr = Object.values(this.sumType);
-      console.log(toyTypeArr)
       const AvgPrices = toyTypeArr.map((price, idx) => price / sumTypeArr[idx]);
-      console.log(AvgPrices)
       return AvgPrices;
     },
   },

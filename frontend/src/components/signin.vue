@@ -8,7 +8,7 @@
             password:888
         </pre
     >
-    <section v-if="!isUserLogged">
+    <section v-if="!loggedinUser">
       <h2>Login</h2>
       <form @submit.prevent="login">
         <input
@@ -141,6 +141,7 @@ export default {
     },
     handleEntrance(user) {
       this.loggedinUser = user;
+      
       // eventBus.$emit('show-msg', this.loggedinUser)
       this.$router.push(`/toy/`);
     },
@@ -148,13 +149,15 @@ export default {
       this.isSignup = !this.isSignup;
     },
   },
-  computed: {
-    isUserLogged() {
-      return this.$store.getters.isUserLogged;
-    },
-  },
+  // computed: {
+  //   isUserLogged() {
+  //     return this.$store.getters.isUserLogged;
+  //   },
+  // },
   created() {
-    // this.loggedinUser =this.$store.getters.loggedinUser;
+    this.loggedinUser =this.$store.getters.loggedinUser;
+    console.log("🚀 ~ file: signin.vue ~ line 160 ~ created ~ this.loggedinUser", this.loggedinUser)
+    
     // this.isUserLogged = this.$$store.getters.isUserLogged
   },
 };

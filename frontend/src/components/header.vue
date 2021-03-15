@@ -11,17 +11,17 @@
       <el-menu-item index="1">
         <router-link to="/">Home</router-link></el-menu-item
       >
-      <el-menu-item index="4" v-if="isUserLogged">
+      <el-menu-item index="4" v-if="loggedinUser">
         <router-link to="/toy">Toys</router-link>
       </el-menu-item>
-      <el-submenu index="2" v-if="isUserLogged">
+      <el-submenu index="2" v-if="loggedinUser">
         <template slot="title">Dashboard</template>
         <el-menu-item index="2-1" @click="movePage('/dashboard')"
           >Doughnut Chart
         </el-menu-item>
         <el-menu-item disabled index="2-2">In progress</el-menu-item>
       </el-submenu>
-    <div class="logout-container" v-if ="isUserLogged"> 
+    <div class="logout-container" v-if ="loggedinUser"> 
            <span class="greet-msg"> Hello {{fullname}} </span>
                <el-button class="logout-btn" size="mini" @click="logout" type="primary" plain >Log Out</el-button
     >
@@ -58,8 +58,8 @@ export default {
   },
 
   computed:{
-      isUserLogged(){
-        return this.$store.getters.isUserLogged;
+      loggedinUser(){
+        return this.$store.getters.loggedinUser;
       },
       fullname(){
         const user =  this.$store.getters.loggedinUser

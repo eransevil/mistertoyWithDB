@@ -17,10 +17,10 @@
       dsd</el-table
     >
 
-      <button class="open-chat-btn" @click="chatModal">Chat</button>
+      <!-- <button class="open-chat-btn" @click="chatModal">Chat</button>
     <pop-up> 
       <chat-app slot='main' v-if="onChat" />
-    </pop-up>
+    </pop-up> -->
     <div class="block">
       <el-pagination
         @current-change="setPage"
@@ -37,14 +37,14 @@
 <script>
 import toyList from "../components/toyList.vue";
 import toyFilter from "../components/toyFilter.vue";
-import popUp from '../components/popUp.vue';
-import chatApp from '../components/chatApp.vue';
+// import popUp from '../components/popUp.vue';
+// import chatApp from '../components/chatApp.vue';
 export default {
   name: "toyApp",
   data() {
     return {
       loading: true,
-      onChat: false,
+      // onChat: false,
 
     };
   },
@@ -55,7 +55,6 @@ export default {
   },
   methods: {
     setPage(pageIdx) {
-      console.log(pageIdx);
       this.$store.commit({ type: "setPage", pageIdx });
     },
 
@@ -72,27 +71,27 @@ export default {
     toAdd(){
       this.$router.push('/addtoy')
     },
-        chatModal() {
-      this.onChat = !this.onChat;
-    },
-        escapekeylistener: function(evt) {
-      if (evt.keyCode === 27 && this.onChat) {
-        this.onChat = false;
-      }
-    }
+    //     chatModal() {
+    //   this.onChat = !this.onChat;
+    // },
+    //     escapekeylistener: function(evt) {
+    //   if (evt.keyCode === 27 && this.onChat) {
+    //     this.onChat = false;
+    //   } 
+    // }
   },
   created() {
-      window.addEventListener('keyup',this.escapekeylistener);
+      // window.addEventListener('keyup',this.escapekeylistener);
   },
    destroyed: function() {
-    window.removeEventListener('keyup', this.escapekeylistener);
+    // window.removeEventListener('keyup', this.escapekeylistener);
   },
 
   components: {
     toyList,
     toyFilter,
-    popUp,
-    chatApp
+    // popUp,
+    // chatApp
   },
 };
 </script>

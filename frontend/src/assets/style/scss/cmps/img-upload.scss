@@ -9,7 +9,7 @@ label img {
   transition: height 0.6s;
 }
 
-input {
+.img-upload-input {
   width: 0;
   height: 0;
 }
@@ -30,9 +30,11 @@ input {
 .toy-img{
     width: 200px;
     height: 200px;
+    border-radius: 20px;
 }
 
 .toy-details-container{
     background-image: linear-gradient(rgb(240, 226, 226), rgb(221, 221, 207), rgb(217, 218, 224));
+    height: 100vh;
 
 }

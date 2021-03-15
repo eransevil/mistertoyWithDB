@@ -3,8 +3,7 @@ import { userService } from '../services/user.service.js';
 
 export const userStore = {
     state: {
-        loggedInUser:null,
-        isUserLogged:false
+        loggedInUser:userService.getLoggedinUser(),
 
      
     },
@@ -18,8 +17,8 @@ export const userStore = {
         isUserLogged(state){
             return state.isUserLogged;
         }
-      },
- 
+      }, 
+  
     mutations: {
         login(state, {loggedInUser}){
             state.loggedInUser = loggedInUser
@@ -36,7 +35,6 @@ export const userStore = {
     actions: {
        async login({ commit }, { user }) {
            try{
-               console.log('dsds')
                const loggedInUser =  await userService.login(user)
                commit({type: 'login', loggedInUser}) 
                return loggedInUser  
@@ -50,9 +48,7 @@ export const userStore = {
   },
     async signup({ commit }, { user }){
         try{
-            console.log('signup')
             const loggedInUser =  await userService.signup(user)
-            console.log(loggedInUser)
             commit({type: 'login', loggedInUser})
             return loggedInUser  
         }

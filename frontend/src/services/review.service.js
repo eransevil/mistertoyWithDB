@@ -6,7 +6,6 @@ function addReview(reviewobj) {
 
 
   function query(filterBy = {}) {
-    console.log(filterBy)
     return httpService.get(`review?toyId=${filterBy}` ,filterBy )
   }
 

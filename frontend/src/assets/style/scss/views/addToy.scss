@@ -2,3 +2,20 @@
     position: absolute;
     left: 0;
 }
+
+
+//toy edit page:
+.toy-edit-container {
+    height: 100vh;
+    background-image: linear-gradient(rgb(240, 226, 226), rgb(221, 221, 207), rgb(217, 218, 224));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.toy-edit-container > *{
+    width: 300px;
+    padding: 5px;
+    margin: 10px;
+}

@@ -19,7 +19,7 @@
         <h3 v-else>Drop image here</h3>
       </label>
       <!-- HIDDEN INPUT -->
-      <input  
+      <input  class="img-upload-input"
         type="file"
         name="img-uploader"
         id="imgUploader"

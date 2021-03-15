@@ -15,7 +15,7 @@ export const reviewStore = {
  
     mutations: {
       setReviews(state, {reviews}){
-        state.review = reviews
+        state.reviews = reviews
       },
       addReviews(state, {reviewToAdd}){
         state.reviews.push(reviewToAdd)

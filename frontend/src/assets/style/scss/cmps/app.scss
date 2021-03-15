@@ -3,10 +3,11 @@
 .toy-app-container{
   background-image: linear-gradient(rgb(240, 226, 226), rgb(221, 221, 207), rgb(217, 218, 224));
   height: 100vh;
+  margin: 0;
 
 }
 
-body{
+body , p , h1, h2, h3, h4, h5, h6{
     margin: 0;
 }
 
