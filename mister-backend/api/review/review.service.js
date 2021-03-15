@@ -37,10 +37,7 @@ async function query(filterBy = {}) {
                 $unwind: '$toy'
             }
         ]).toArray()
-        // console.log(reviews)
         reviews = reviews.map(review => {
-            // const {username, _id} = review.user
-            // const {_id, name, price} = review.toy
             ObjectId(filterBy.toyId)
             review.user = { _id: review.user._id, username: review.user.username }
             review.toy = { _id:ObjectId(review.toy._id), name: review.toy.name , price: review.toy.price}
@@ -81,7 +78,6 @@ async function add(review) {
             content: review.content
         }
         const collection = await dbService.getCollection('review')
-        // console.log(reviewToAdd)
         await collection.insertOne(reviewToAdd)
         return reviewToAdd;
     } catch (err) {

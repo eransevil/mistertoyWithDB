@@ -34,8 +34,8 @@ async function getToyById(req, res) {
 
 async function addToy(req, res) {
     try{
-        const {name, price, type, inStock , createdAt} = req.body;
-        const toy = {name, price, type, inStock , createdAt}
+        const {name, price, type, inStock , createdAt , massages} = req.body;
+        const toy = {name, price, type, inStock , createdAt , massages}
         const savedToy = await toyService.add(toy) 
         res.json(savedToy)
     }
@@ -49,8 +49,8 @@ async function addToy(req, res) {
 
 async function updateToy (req, res) {
     try{
-        const {name, price, type,inStock,_id , reviews, url } = req.body
-        const toy = { name, price, type,inStock, _id , reviews, url}
+        const {name, price, type,inStock,_id , massages, url } = req.body
+        const toy = { name, price, type,inStock, _id , massages, url}
         const savedToy = await toyService.update(toy)
         res.json(savedToy)
     }

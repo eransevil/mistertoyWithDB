@@ -4,8 +4,6 @@ const reviewService = require('./review.service')
  
 async function getReviews(req, res) {
     try {
-        console.log( 'req.params')
-        console.log( req.query)
         const reviews = await reviewService.query(req.query)
         res.send(reviews)
     } catch (err) {
@@ -22,16 +20,12 @@ async function deleteReview(req, res) {
         logger.error('Failed to delete review', err)
         res.status(500).send({ err: 'Failed to delete review' })
     }
-}
+} 
  
  
 async function addReview(req, res) {
     try {
         var review = req.body
-        // var rev = Object.keys(req.body)
-        // console.log(review, '30')
-        // throw new err
-        // review.txt  = rev[0]
         review.byUserId = req.session.user._id
         review = await reviewService.add(review)
         review.byUser = req.session.user
