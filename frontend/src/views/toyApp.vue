@@ -48,7 +48,7 @@ export default {
 
     };
   },
-  computed: {
+  computed: { 
     toysToShow() {
       return this.$store.getters.toysForDisplay;
     },

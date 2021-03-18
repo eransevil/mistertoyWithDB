@@ -90,7 +90,7 @@ export const toyStore = {
           console.log('Store: Cannot delete toy', err);
           // throw new Error('Cannot delete toy');
         });
-    },
+    }, 
     addToy({ commit }, { toy }) {
       const type = toy._id ? 'updateToy' : 'addToy';
       toyService

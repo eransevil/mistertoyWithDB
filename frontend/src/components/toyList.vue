@@ -7,7 +7,7 @@
       @removeToy="removeToy"
     />
   </ul>
-</template>
+</template> 
 
 <script>
 import toyPreview from "../components/toyPreview.vue";
@@ -16,6 +16,7 @@ export default {
   props: {
     toys: Array,
   },
+
   methods: {
     removeToy(toyId) {
       this.$emit("removeToy", toyId);

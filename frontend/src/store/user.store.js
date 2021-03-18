@@ -5,7 +5,6 @@ export const userStore = {
     state: {
         loggedInUser:userService.getLoggedinUser(),
 
-     
     },
     getters: {
         loggedinUser(state){
